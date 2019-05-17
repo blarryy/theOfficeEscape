@@ -13,7 +13,7 @@ UOpenDoor::UOpenDoor()
 }
 
 
-// Called when the game starts
+// Caled when the game starts
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
