@@ -29,7 +29,7 @@ public:
 
 
 private:
-	float Reach = 50.f;
+	float Reach = 125.f;
 	UPhysicsHandleComponent* PhysicsHandle = nullptr;
 	UInputComponent* InputComponent = nullptr;
 	//ray-cast and grab what's in reach
