@@ -12,6 +12,7 @@ UGrabber::UGrabber()
 }
 
 void UGrabber::Grab(){
+	if (!PhysicsHandle){return;}
 	UE_LOG(LogTemp, Warning, TEXT("Grab pressed"));
 	auto HitResult = GetFirstPhysicsBodyInReach();
 	auto ComponentToGrab = HitResult.GetComponent();
@@ -26,6 +27,7 @@ void UGrabber::Grab(){
 	}
 }
 void UGrabber::Release(){
+	if (!PhysicsHandle){return;}
 	UE_LOG(LogTemp, Warning, TEXT("Grab released"));
 	PhysicsHandle->ReleaseComponent();
 }
@@ -49,8 +51,8 @@ void UGrabber::SetUpInputComponent(){
 
 void UGrabber::FindPhysicsComponent(){
 	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
-	if (PhysicsHandle){
-		UE_LOG(LogTemp, Warning, TEXT("Physics handle reporting to duty!"));
+	if (PhysicsHandle == nullptr){
+		UE_LOG(LogTemp, Warning, TEXT("Physics handle missing"));
 	}
 }
 
@@ -100,7 +102,7 @@ FVector UGrabber::GetReachLineStart(){
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-	
+	if (!PhysicsHandle){return;}
 	if (PhysicsHandle->GrabbedComponent)
 	{
 		PhysicsHandle->SetTargetLocation(GetReachLineEnd());

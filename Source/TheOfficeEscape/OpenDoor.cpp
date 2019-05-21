@@ -15,12 +15,14 @@ UOpenDoor::UOpenDoor()
 void UOpenDoor::OpenDoor()
 {
 	FRotator NewRotation = FRotator(0.0f, openAngle, 0.0f);
+	if (!Owner) {return;}
 	Owner->SetActorRotation(NewRotation);
 }
 
 void UOpenDoor::CloseDoor()
 {
 	FRotator NewRotation = FRotator(0.0f, 0.0f, 0.0f);
+	if (!Owner) {return;}
 	Owner->SetActorRotation(NewRotation);
 }
 
@@ -34,11 +36,11 @@ void UOpenDoor::BeginPlay()
 float UOpenDoor::GetTotalMassOfActorsOnPlate(){
 	float TotalMass = 0.f;
 	TArray<AActor*> OverlappingActors;
+	if (!PressurePlate){return 0.f;}
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 	for (const auto* Actor : OverlappingActors)
 		{
 			TotalMass += Actor->FindComponentByClass<UPrimitiveComponent>()->GetMass();
-			UE_LOG(LogTemp, Warning, TEXT("%s on pressure plate"), *Actor->GetName())
 		}
 	return TotalMass;
 }
