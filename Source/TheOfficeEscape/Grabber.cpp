@@ -13,7 +13,6 @@ UGrabber::UGrabber()
 
 void UGrabber::Grab(){
 	if (!PhysicsHandle){return;}
-	UE_LOG(LogTemp, Warning, TEXT("Grab pressed"));
 	auto HitResult = GetFirstPhysicsBodyInReach();
 	auto ComponentToGrab = HitResult.GetComponent();
 	auto ActorHit = HitResult.GetActor();
@@ -28,7 +27,6 @@ void UGrabber::Grab(){
 }
 void UGrabber::Release(){
 	if (!PhysicsHandle){return;}
-	UE_LOG(LogTemp, Warning, TEXT("Grab released"));
 	PhysicsHandle->ReleaseComponent();
 }
 
