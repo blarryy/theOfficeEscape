@@ -29,6 +29,7 @@ private:
 	UPROPERTY(EditAnywhere)
 	float DoorCloseDelay = 3.f;
 	float LastDoorOpenTime;
+	UPROPERTY(EditAnywhere)
 	bool DrawerClosed = true;
 
 public:	
