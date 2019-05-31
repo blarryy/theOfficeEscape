@@ -41,7 +41,7 @@ private:
 	AActor* Owner = nullptr;
 
 	UPROPERTY(EditAnywhere)
-	float TriggerMass = 29.f;
+	float TriggerMass = 69.f;
 	// return total mass in kg
 	float GetTotalMassOfActorsOnPlate();
 };
